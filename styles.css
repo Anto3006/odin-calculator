@@ -1,0 +1,53 @@
+body {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	background-color: grey;
+}
+
+.calculator-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: lightgray;
+	padding: 3em;
+	gap: 1em;
+}
+
+.screen {
+	background-color: darkgrey;
+	width: 100%;
+	text-align: right;
+	font-size: 2em;
+	font-family: 'Calculator', sans-serif;
+}
+
+.buttons-container {
+	display: flex;
+	flex-direction: row;
+	gap: 0.5em;
+}
+
+.number-buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+}
+
+.button-row {
+	display: flex;
+	gap: 0.5em;
+}
+
+.operator-buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+}
+
+button {
+	padding: 20px;
+	box-sizing: border-box;
+}

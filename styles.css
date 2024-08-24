@@ -4,6 +4,7 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	background-color: grey;
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .calculator-container {
@@ -14,6 +15,7 @@ body {
 	background-color: lightgray;
 	padding: 3em;
 	gap: 1em;
+	border: 5px black solid;
 }
 
 .screen {
@@ -22,6 +24,7 @@ body {
 	text-align: right;
 	font-size: 2em;
 	font-family: 'Calculator', sans-serif;
+	border: 1px solid black;
 }
 
 .buttons-container {
@@ -50,4 +53,19 @@ body {
 button {
 	padding: 20px;
 	box-sizing: border-box;
+	border: 2px solid black;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.operator-buttons button {
+	background-color: darkorange;
+}
+
+.clear-button {
+	background-color: red;
+}
+
+.equal-button {
+	background-color: darkgrey;
 }

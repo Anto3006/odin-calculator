@@ -1,8 +1,9 @@
 let first = null;
 let second = null;
 let op = null;
+let enterNewNumber = true;
 
-const MAX_NUMBER = 9999999999999999;
+const MAX_NUMBER = 9999999999;
 
 const NUMBER_BUTTONS = [];
 for (let number = 0; number <= 9; number++) {
@@ -25,10 +26,47 @@ const EQUAL_BUTTON = {
   clickEvent: () => executeOperation(),
 };
 
+const PLUS_BUTTON = {
+  value: "+",
+  class: "",
+  clickEvent: () => clickOperation(Operator.Add),
+};
+
+const MINUS_BUTTON = {
+  value: "-",
+  class: "",
+  clickEvent: () => clickOperation(Operator.Substract),
+};
+
+const MULT_BUTTON = {
+  value: "x",
+  class: "",
+  clickEvent: () => clickOperation(Operator.Multiply),
+};
+
+const DIVIDE_BUTTON = {
+  value: "/",
+  class: "",
+  clickEvent: () => clickOperation(Operator.Divide),
+};
+
 function clickNumber(number) {
-  let currentNumber = getScreenValue();
-  let newNumber = currentNumber * 10 + number;
-  changeScreen(newNumber);
+  if (!enterNewNumber) {
+    let currentNumber = getScreenValue();
+    let newNumber = currentNumber * 10 + number;
+    changeScreen(newNumber);
+  } else {
+    let newNumber = number;
+    enterNewNumber = false;
+    changeScreen(newNumber);
+  }
+}
+
+function clickOperation(operator) {
+  executeOperation();
+  enterNewNumber = true;
+  op = operator;
+  first = getScreenValue();
 }
 
 const Operator = {
@@ -84,6 +122,8 @@ function clear() {
 
 function executeOperation() {
   let result = 0;
+  second = getScreenValue();
+  console.log(first, second, op);
   switch (op) {
     case Operator.Add:
       result = add(first, second);
@@ -115,7 +155,6 @@ function createButtonRow(buttonDescriptions) {
   let buttonRow = document.createElement("div");
   buttonRow.className = "button-row";
   buttonDescriptions.forEach((element) => {
-    console.log(element);
     buttonRow.appendChild(createButton(element));
   });
   return buttonRow;
@@ -140,8 +179,23 @@ function addNumberButtons() {
   buttons.push(
     createButtonRow([CLEAR_BUTTON, NUMBER_BUTTONS[0], EQUAL_BUTTON]),
   );
-  console.log(buttons);
   numberButtons.replaceChildren(...buttons);
 }
 
+function addOperatorButtons() {
+  let operatorButtons = document.querySelector(".operator-buttons");
+  let buttonsDescriptions = [
+    PLUS_BUTTON,
+    MINUS_BUTTON,
+    MULT_BUTTON,
+    DIVIDE_BUTTON,
+  ];
+  let buttons = [];
+  buttonsDescriptions.forEach((buttonDescription) => {
+    buttons.push(createButton(buttonDescription));
+  });
+  operatorButtons.replaceChildren(...buttons);
+}
+
 addNumberButtons();
+addOperatorButtons();
